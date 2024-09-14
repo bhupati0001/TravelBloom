@@ -14,26 +14,42 @@
         <nav>
             <h1 class="logo">Travel Guide</h1>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" style="color: tomato;">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search destinations...">
+                <input list="destinations" id="search-input" name="destination" placeholder="Search destinations...">
+                <datalist id="destinations">
+                    <option value="Tokyo">
+                    <option value="Paris">
+                    <option value="Bali">
+                    <option value="Tajmahal">
+                    <option value="Konark">
+                </datalist>
                 <button id="search-btn">Search</button>
             </div>
         </nav>
-
     </header>
 
     <!-- Main content -->
     <main>
+        <section id="filters">
+            <button class="filter-btn" data-category="cities">Cities</button>
+            <button class="filter-btn" data-category="beaches">Beaches</button>
+            <button class="filter-btn" data-category="mountains">mountains</button>
+            <button id="filter-all">All</button>
+        </section>
         <section id="recommendations">
             <h2>Discover Your Ideal Destination</h2>
-            <div class="recommendation-grid">
+            <div class="recommendation-grid" id="recommendation-grid">
                 <!-- Dynamic destination cards will be added here by JavaScript -->
             </div>
         </section>
+        <section id="pagination">
+            <!-- Pagination buttons will be dynamically added here by JavaScript -->
+        </section>
+
     </main>
 
     <!-- Footer -->
