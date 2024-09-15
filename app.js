@@ -1,28 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
     const recommendationGrid = document.getElementById('recommendation-grid');
-    const loading = document.getElementById('loading');
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
     const filterButtons = document.querySelectorAll('#filters .filter-btn');
     const filterAll = document.getElementById('filter-all');
     const pagination = document.getElementById('pagination'); // Get Pagination container
-
     const dataList = document.getElementById('destinations');
 
     let page = 0;
     const pageSize = 6; // Number of items per page
     let currentFilter = 'all'; // Default filter
     let totalPages = 0;
+    let places = [];
 
     async function fetchPlaces() {
         try {
             const response = await fetch('famousPlaces.json');
             if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
-            return data;
+            places = data.places; // Store places globally
+            return places;
         } catch (error) {
             console.error('Failed to fetch places:', error);
-            return { cities: [], beaches: [], temples: [] };
+            return [];
         }
     }
 
@@ -38,30 +38,24 @@ document.addEventListener('DOMContentLoaded', () => {
         return placeItem;
     }
 
-    function filterPlaces(places) {
+    function filterPlaces() {
         if (currentFilter === 'all') return places;
-        return places.filter(place => place.category === currentFilter); // Fix: Ensure filtering by category
+        return places.filter(place => place.category === currentFilter);
     }
 
-    function searchPlaces(places, query) {
-        if (!query) return places;
-        return places.filter(place => place.name.toLowerCase().includes(query.toLowerCase()));
+    function searchPlaces(query) {
+        if (!query) return filterPlaces();
+        return filterPlaces().filter(place => place.name.toLowerCase().includes(query.toLowerCase()));
     }
 
     function loadPlacesByPage(page) {
-        fetchPlaces().then(data => {
-            let places = [...data.places];
-
-            // Apply filtering
-            places = filterPlaces(places);
-
-            // Apply search query if present
+        fetchPlaces().then(() => {
             const query = searchInput.value.trim();
-            places = searchPlaces(places, query);
+            const filteredAndSearchedPlaces = searchPlaces(query);
 
             const startIndex = page * pageSize;
             const endIndex = startIndex + pageSize;
-            const pagePlaces = places.slice(startIndex, endIndex);
+            const pagePlaces = filteredAndSearchedPlaces.slice(startIndex, endIndex);
 
             recommendationGrid.innerHTML = ''; // Clear previous results
             pagePlaces.forEach(place => {
@@ -70,11 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // Set up pagination
-            totalPages = Math.ceil(places.length / pageSize);
+            totalPages = Math.ceil(filteredAndSearchedPlaces.length / pageSize);
             renderPagination(totalPages);
 
-            // Show or hide loading indicator
-            loading.style.display = pagePlaces.length === 0 ? 'none' : 'block';
+            // Display recommendations once data is loaded
+            displayRecommendations(filteredAndSearchedPlaces);
         });
     }
 
@@ -115,8 +109,43 @@ document.addEventListener('DOMContentLoaded', () => {
         loadPlacesByPage(page); // Reload places based on search input
     });
 
+    // Random recommendations based on category
+    function getRandomPlace(category) {
+        console.log(places);
+        const filteredPlaces = places.filter(place => place.category === category);
+        if (filteredPlaces.length === 0) return null;
+        const randomIndex = Math.floor(Math.random() * filteredPlaces.length);
+        return filteredPlaces[randomIndex];
+    }
+
+    function displayRecommendations() {
+        const recommendationSection = document.getElementById('recommendation-cards');
+        recommendationSection.innerHTML = ''; // Clear previous recommendations
+
+        const recommendedCities = getRandomPlace('cities');
+        const recommendedBeaches = getRandomPlace('beaches');
+        const recommendedMountains = getRandomPlace('mountains');
+
+        const recommendations = [recommendedCities, recommendedBeaches, recommendedMountains];
+
+        recommendations.forEach(place => {
+            if (place) { // Ensure place exists before displaying
+                const card = document.createElement('div');
+                card.className = 'recommendation-card';
+
+                card.innerHTML = `
+                    <img src="${place.image}" alt="${place.name}">
+                    <div class="info">
+                        <h3>${place.name}</h3>
+                        <p>${place.description}</p>
+                    </div>
+                `;
+
+                recommendationSection.appendChild(card);
+            }
+        });
+    }
+
     // Initial load
     loadPlacesByPage(page);
 });
-
-

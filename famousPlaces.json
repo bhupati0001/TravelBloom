@@ -184,7 +184,7 @@
       "category": "beaches",
       "name": "Phuket",
       "description": "A popular island in Thailand known for its beautiful beaches, lively nightlife, and water activities.",
-      "image": "media/phuket.jpg"
+      "image": "media/phuket.jpeg"
     },
     {
       "category": "beaches",
@@ -202,7 +202,7 @@
       "category": "beaches",
       "name": "Maldives",
       "description": "A tropical paradise in the Indian Ocean known for its overwater bungalows and crystal-clear waters.",
-      "image": "media/maldives.jpg"
+      "image": "media/maldives.jpeg"
     },
     {
       "category": "beaches",
