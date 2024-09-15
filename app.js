@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = document.querySelectorAll('#filters .filter-btn');
     const filterAll = document.getElementById('filter-all');
     const pagination = document.getElementById('pagination');
-    const dataList = document.getElementById('destinations');
 
     let page = 0;
     const pageSize = 6; // Number of items per page
@@ -49,28 +48,27 @@ document.addEventListener('DOMContentLoaded', () => {
         return filterPlaces().filter(place => place.name.toLowerCase().includes(query.toLowerCase()));
     }
 
-    function loadPlacesByPage(page) {
-        fetchPlaces().then(() => {
-            const query = searchInput.value.trim();
-            const filteredAndSearchedPlaces = searchPlaces(query);
+    async function loadPlacesByPage(page) {
+        await fetchPlaces(); // Ensure places are fetched
+        const query = searchInput.value.trim();
+        const filteredAndSearchedPlaces = searchPlaces(query);
 
-            const startIndex = page * pageSize;
-            const endIndex = startIndex + pageSize;
-            const pagePlaces = filteredAndSearchedPlaces.slice(startIndex, endIndex);
+        const startIndex = page * pageSize;
+        const endIndex = startIndex + pageSize;
+        const pagePlaces = filteredAndSearchedPlaces.slice(startIndex, endIndex);
 
-            recommendationGrid.innerHTML = ''; // Clear previous results
-            pagePlaces.forEach(place => {
-                const placeItem = createPlaceItem(place);
-                recommendationGrid.appendChild(placeItem);
-            });
-
-            // Set up pagination
-            totalPages = Math.ceil(filteredAndSearchedPlaces.length / pageSize);
-            renderPagination(totalPages);
-
-            // Display recommendations once data is loaded
-            displayRecommendations(filteredAndSearchedPlaces);
+        recommendationGrid.innerHTML = ''; // Clear previous results
+        pagePlaces.forEach(place => {
+            const placeItem = createPlaceItem(place);
+            recommendationGrid.appendChild(placeItem);
         });
+
+        // Set up pagination
+        totalPages = Math.ceil(filteredAndSearchedPlaces.length / pageSize);
+        renderPagination(totalPages);
+
+        // Display recommendations
+        displayRecommendations(); // Call to display recommendations
     }
 
     function renderPagination(totalPages) {
@@ -117,40 +115,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Random recommendations based on category
-    function getRandomPlace(category) {
-        console.log(places);
+    function getRandomPlaces(category, count) {
         const filteredPlaces = places.filter(place => place.category === category);
-        if (filteredPlaces.length === 0) return null;
-        const randomIndex = Math.floor(Math.random() * filteredPlaces.length);
-        return filteredPlaces[randomIndex];
+        if (filteredPlaces.length === 0) return [];
+        const shuffled = filteredPlaces.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
     }
 
     function displayRecommendations() {
-        const recommendationSection = document.getElementById('recommendation-cards');
-        recommendationSection.innerHTML = ''; // Clear previous recommendations
+        const recommendationCities = document.getElementById('recommended-cities');
+        const recommendationMountains = document.getElementById('recommended-mountains');
+        const recommendationBeaches = document.getElementById('recommended-beaches');
+        const recommendationTemples = document.getElementById('recommended-temples');
 
-        const recommendedCities = getRandomPlace('cities');
-        const recommendedBeaches = getRandomPlace('beaches');
-        const recommendedMountains = getRandomPlace('mountains');
+        // Clear previous recommendations
+        recommendationCities.innerHTML = '';
+        recommendationMountains.innerHTML = '';
+        recommendationBeaches.innerHTML = '';
+        recommendationTemples.innerHTML = '';
 
-        const recommendations = [recommendedCities, recommendedBeaches, recommendedMountains];
+        const recommendedCities = getRandomPlaces('cities', 2);
+        const recommendedBeaches = getRandomPlaces('beaches', 2);
+        const recommendedMountains = getRandomPlaces('mountains', 2);
+        const recommendedTemples = getRandomPlaces('temples', 2);
 
-        recommendations.forEach(place => {
-            if (place) { // Ensure place exists before displaying
-                const card = document.createElement('div');
-                card.className = 'recommendation-card';
+        const addRecommendations = (element, places) => {
+            places.forEach(place => {
+                if (place) {
+                    const card = document.createElement('div');
+                    card.className = 'recommendation-card';
 
-                card.innerHTML = `
-                    <img src="${place.image}" alt="${place.name}">
-                    <div class="info">
-                        <h3>${place.name}</h3>
-                        <p>${place.description}</p>
-                    </div>
-                `;
+                    card.innerHTML = `
+                        <img src="${place.image}" alt="${place.name}">
+                        <div class="info">
+                            <h3>${place.name}</h3>
+                            <p>${place.description}</p>
+                        </div>
+                    `;
 
-                recommendationSection.appendChild(card);
-            }
-        });
+                    element.appendChild(card);
+                }
+            });
+        };
+
+        addRecommendations(recommendationCities, recommendedCities);
+        addRecommendations(recommendationBeaches, recommendedBeaches);
+        addRecommendations(recommendationMountains, recommendedMountains);
+        addRecommendations(recommendationTemples, recommendedTemples);
     }
 
     // Initial load

@@ -287,6 +287,66 @@
       "name": "Mont Blanc",
       "description": "The highest mountain in the Alps, located between France and Italy, known for its stunning views and skiing.",
       "image": "media/mont-blanc.jpg"
+    },
+    {
+      "category": "temples",
+      "name": "Angkor Wat",
+      "description": "A massive temple complex in Cambodia known for its stunning architecture and historical significance.",
+      "image": "media/angkor-wat.jpg"
+    },
+    {
+      "category": "temples",
+      "name": "Taj Mahal",
+      "description": "A white marble mausoleum in India, renowned for its exquisite architecture and beautiful gardens.",
+      "image": "media/tajmahal.jpeg"
+    },
+    {
+      "category": "temples",
+      "name": "Kinkaku-ji",
+      "description": "Also known as the Golden Pavilion, a Zen Buddhist temple in Kyoto, Japan, famous for its stunning gold-leaf exterior.",
+      "image": "media/kinkaku-ji.jpg"
+    },
+    {
+      "category": "temples",
+      "name": "Shwedagon Pagoda",
+      "description": "A sacred Buddhist pagoda in Yangon, Myanmar, known for its golden stupa and religious significance.",
+      "image": "media/shwedagon-pagoda.jpg"
+    },
+    {
+      "category": "temples",
+      "name": "Temple of Heaven",
+      "description": "A historic temple complex in Beijing, China, known for its impressive architecture and role in ancient Chinese ceremonies.",
+      "image": "media/temple-of-heaven.jpg"
+    },
+    {
+      "category": "temples",
+      "name": "Batu Caves",
+      "description": "A series of caves and cave temples in Malaysia, known for their impressive statues and cultural significance.",
+      "image": "media/batu-caves.jpg"
+    },
+    {
+      "category": "temples",
+      "name": "Hagia Sophia",
+      "description": "A historic architectural marvel in Istanbul, Turkey, that has served as both a church and mosque.",
+      "image": "media/hagia-sophia.jpg"
+    },
+    {
+      "category": "temples",
+      "name": "Wat Arun",
+      "description": "Also known as the Temple of Dawn, a stunning Buddhist temple located in Bangkok, Thailand, with an iconic spire.",
+      "image": "media/wat-arun.jpg"
+    },
+    {
+      "category": "temples",
+      "name": "Parthenon",
+      "description": "An ancient Greek temple on the Acropolis of Athens, known for its classical architecture and historical significance.",
+      "image": "media/parthenon.jpg"
+    },
+    {
+      "category": "temples",
+      "name": "Kailasa Temple",
+      "description": "An extraordinary rock-cut temple in Ellora, India, known for its intricate carvings and architectural grandeur.",
+      "image": "media/kailasa-temple.jpg"
     }
   ]
 }

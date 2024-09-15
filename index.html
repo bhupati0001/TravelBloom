@@ -19,15 +19,7 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="search-bar">
-                <!-- <input list="destinations" id="search-input" name="destination" placeholder="Search destinations..."> -->
                 <input id="search-input" name="destination" placeholder="Search destinations..." type="search">
-                <!-- <datalist id="destinations">
-                    <option value="Tokyo">
-                    <option value="Paris">
-                    <option value="Bali">
-                    <option value="himalya">
-                    <option value="alp">
-                </datalist> -->
                 <button id="search-btn">Search</button>
                 <button id="clear-btn">Clear</button>
             </div>
@@ -49,6 +41,25 @@
         <section id="recommendations" class="recommendations-section">
             <h2>Recommended Places</h2>
             <div id="recommendation-cards" class="recommendation-cards">
+                <div>
+                    <h1>Cities</h1>
+                    <div id="recommended-cities" class="recommendation-places"></div>
+                </div>
+
+                <div>
+                    <h1>Beaches</h1>
+                    <div id="recommended-beaches" class="recommendation-places"></div>
+                </div>
+
+                <div>
+                    <h1>Mountains</h1>
+                    <div id="recommended-mountains" class="recommendation-places"></div>
+                </div>
+
+                <div>
+                    <h1>Temples</h1>
+                    <div id="recommended-temples" class="recommendation-places"></div>
+                </div>
                 <!-- Recommended places will be inserted here -->
             </div>
         </section>
@@ -57,18 +68,20 @@
             <button class="filter-btn" data-category="cities">Cities</button>
             <button class="filter-btn" data-category="beaches">Beaches</button>
             <button class="filter-btn" data-category="mountains">Mountains</button>
+            <button class="filter-btn" data-category="temples">Temples</button>
             <button id="filter-all">All</button>
         </section>
-        <section id="recommendations">
+
+        <section id="recommendations-dynamic">
             <h2>Discover Your Ideal Destination</h2>
             <div class="recommendation-grid" id="recommendation-grid">
                 <!-- Dynamic destination cards will be added here by JavaScript -->
             </div>
         </section>
+
         <section id="pagination">
             <!-- Pagination buttons will be dynamically added here by JavaScript -->
         </section>
-
     </main>
 
     <!-- Footer -->
