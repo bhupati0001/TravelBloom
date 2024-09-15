@@ -2,9 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const recommendationGrid = document.getElementById('recommendation-grid');
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
+    const clearBtn = document.getElementById('clear-btn'); // New Clear button
     const filterButtons = document.querySelectorAll('#filters .filter-btn');
     const filterAll = document.getElementById('filter-all');
-    const pagination = document.getElementById('pagination'); // Get Pagination container
+    const pagination = document.getElementById('pagination');
     const dataList = document.getElementById('destinations');
 
     let page = 0;
@@ -107,6 +108,12 @@ document.addEventListener('DOMContentLoaded', () => {
     searchBtn.addEventListener('click', () => {
         page = 0;
         loadPlacesByPage(page); // Reload places based on search input
+    });
+
+    clearBtn.addEventListener('click', () => {
+        searchInput.value = ''; // Clear the search input
+        page = 0; // Reset to the first page
+        loadPlacesByPage(page); // Reload places with no search filter
     });
 
     // Random recommendations based on category
