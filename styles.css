@@ -75,13 +75,13 @@ main {
   cursor: pointer;
 }
 
-.destination-card img {
+.place-item img {
   width: 100%;
   height: 70%;
   border-radius: 10px;
 }
 
-.destination-card img:hover {
+.place-item img:hover {
   transform: scale(1.01); /* Updated from 'scale' to 'transform: scale' */
   box-shadow: 0 0 8px black;
 }
