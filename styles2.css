@@ -5,16 +5,24 @@
   box-sizing: border-box;
 }
 
+/* General Styling */
 body {
   font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
   line-height: 1.6;
-  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
 }
 
+/* Header */
 header {
   background-color: #333;
   color: white;
   padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
@@ -39,25 +47,17 @@ header {
 }
 
 .search-bar {
-  float: right;
-}
-
-.search-bar input {
-  padding: 0.5rem;
-  margin-right: 5px;
-}
-header .search-bar {
   display: inline-block;
   margin-left: 20px;
 }
 
-header .search-bar input {
+.search-bar input {
   padding: 0.5rem;
   border-radius: 5px;
   border: none;
 }
 
-header .search-bar button {
+.search-bar button {
   padding: 0.5rem 1rem;
   background-color: #ff6f61;
   border: none;
@@ -66,39 +66,12 @@ header .search-bar button {
   cursor: pointer;
 }
 
-main {
-  padding: 2rem;
-  text-align: center;
-}
-
-.recommendation-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-footer {
-  background-color: #333;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-  margin-top: 3rem;
-}
-
-/* General Styling */
-body {
-  font-family: "Arial", sans-serif;
-  background-color: #f7f7f7;
-  color: #333;
-  margin: 0;
-  padding: 0;
-}
-
+/* Main Content */
 main {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  text-align: center;
 }
 
 /* Page Sections */
@@ -115,7 +88,6 @@ main {
 #contact h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  text-align: center;
   color: #333;
 }
 
@@ -158,6 +130,56 @@ main {
   position: absolute;
   left: 0;
   color: #ff6f61;
+}
+
+/* Team Section */
+.team-section {
+  padding: 2rem 1rem;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.team-section h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.team-members {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.team-member {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.team-member img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.team-member h3 {
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.team-member p {
+  margin: 0;
+  color: #666;
+  line-height: 1.6;
 }
 
 /* Contact Page */
