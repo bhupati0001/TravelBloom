@@ -63,6 +63,28 @@ main {
   text-align: center;
 }
 
+/* Introduction Section Styles */
+.introduction-section {
+  padding: 20px;
+  background-color: #e0e0e0; /* Light gray background */
+  text-align: center;
+  margin-bottom: 2rem; /* Space below the introduction section */
+}
+
+.introduction-section h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.introduction-section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 800px;
+  color: #333;
+}
+
+/* Recommendation Grid Styles */
 .recommendation-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -82,7 +104,7 @@ main {
 }
 
 .place-item img:hover {
-  transform: scale(1.01); /* Updated from 'scale' to 'transform: scale' */
+  transform: scale(1.01);
   box-shadow: 0 0 8px black;
 }
 
@@ -135,7 +157,7 @@ footer {
 }
 
 .pagination-btn.active {
-  background-color: tomato; /* Darker green to highlight the active page */
+  background-color: tomato; /* Highlight the active page */
 }
 
 .pagination-btn:disabled {
